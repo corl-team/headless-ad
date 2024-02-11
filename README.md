@@ -1,5 +1,7 @@
 <h1 align="center">Headless-AD</h1>
 
+[![arXiv](https://img.shields.io/badge/arXiv-2312.13327-<COLOR>.svg)](https://arxiv.org/abs/2312.13327)
+
 This repository contains an official implementation of [Headless-AD](https://arxiv.org/pdf/2312.13327.pdf).  
 
 TL;DR: we extend [Algorithm Distillation](https://arxiv.org/pdf/2210.14215.pdf) to environments with variable discrete action spaces.
