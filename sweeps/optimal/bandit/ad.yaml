@@ -1,0 +1,25 @@
+project: Headless-AD
+program: src/bandit/algorithms/ad.py
+method: grid
+command:
+  - accelerate
+  - launch
+  - --mixed_precision
+  - bf16
+  - -m
+  - src.bandit.algorithms.ad
+  - ${args}
+
+
+metric: 
+  name: raw_regrets/train
+  goal: minimize
+
+parameters:
+  train_seed:
+    values: [1, 2, 3, 4, 5]
+  config_path:
+    value: configs/bandit/ad.yaml
+  train_max_arms:
+    values: [10, 20, 25, 30, 40, 50, 100]
+  

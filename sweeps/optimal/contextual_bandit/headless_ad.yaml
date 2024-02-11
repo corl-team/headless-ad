@@ -1,0 +1,22 @@
+project: Headless-AD
+program: src/contextual_bandit/algorithms/headless_ad.py
+command:
+  - accelerate
+  - launch
+  - --mixed_precision
+  - bf16
+  - -m
+  - src.contextual_bandit.algorithms.headless_ad
+  - ${args}
+
+method: grid
+
+metric: 
+  name: "final/value"
+  goal: maximize
+
+parameters:
+  train_seed:
+    values: [1, 2, 3, 4, 5]
+  config_path:
+    value: configs/contextual_bandit/headless_ad.yaml

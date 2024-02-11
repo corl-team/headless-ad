@@ -1,0 +1,47 @@
+project: Headless-AD
+program: src/bandit/algorithms/headless_ad.py
+command:
+  - accelerate
+  - launch
+  - --mixed_precision
+  - bf16
+  - -m
+  - src.bandit.algorithms.headless_ad
+  - ${args}
+
+method: bayes
+
+metric: 
+  name: "final/value"
+  goal: minimize
+
+parameters:
+  group:
+    value: 'in-sweep'
+  tau:
+    distribution: log_uniform_values
+    min: 0.1
+    max: 5.0
+  learning_rate:
+    distribution: log_uniform_values
+    min: 1e-6
+    max: 1e-2
+  weight_decay:
+    distribution: log_uniform_values
+    min: 1e-5
+    max: 1.0
+  dropout:
+    distribution: uniform
+    min: 0.0
+    max: 0.9
+  attention_dropout:
+    distribution: uniform
+    min: 0.0
+    max: 0.9
+  beta1:
+    distribution: uniform
+    min: 0.001
+    max: 1.0
+
+  
+  

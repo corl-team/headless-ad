@@ -1,0 +1,17 @@
+gymnasium==0.29.0
+wandb
+accelerate
+tensorboard
+numpy==1.23.1
+pyrallis
+tqdm
+matplotlib
+pandas
+plotly
+nbformat
+numba
+pyyaml
+
+# lightning@git+https://github.com/Lightning-AI/lightning@master
+# einops
+# xformers

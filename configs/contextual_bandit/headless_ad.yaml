@@ -1,0 +1,71 @@
+# Tuned
+num_layers: 8
+attention_dropout: 0.3
+beta1: 0.5
+dropout: 0.25
+learning_rate: 5e-5
+get_action_type: mode
+weight_decay: 5e-2
+tau: 3.0
+
+# wandb
+project: Headless-AD
+group: contextual_optimal
+job_type: debug
+name: null
+
+# seeds
+train_seed: 0
+eval_seed: 100
+
+# data settings
+env_name: ContextualBandit
+num_train_envs: 10_000
+num_env_steps: 300
+num_in_context_steps: 300
+train_min_arms: 4
+train_max_arms: 20
+eval_more_arms_list: [20, 25, 30, 40, 50, 100]
+data_generation_algo: linucb
+ucb_alpha: 0.3  # ucb
+learning_histories_path: trajectories
+bandit_context_dim: 2
+
+num_eval_envs: 50
+eval_every: 1000
+log_every: 100
+
+num_train_steps: 100_000
+
+loss_type: contrastive  # [contrastive, mse]
+use_aux_loss: False
+
+# Model Params
+seq_len: 300
+layer_norm_bias: True
+token_embed_dim: 128
+d_model: 1024
+num_heads: 8
+
+# Training params
+batch_size: 32
+warmup_ratio: 0.1
+clip_grad_norm: 5
+sim_measure: dot
+use_action_set_prompt: True
+train_on_mixed: True
+rand_select_in_ucb: True
+
+# New
+rotary_percentage: 1.0
+parallel_residual: False
+_norm_class: FusedRMSNorm
+_mlp_class: LLaMAMLP
+shared_attention_norm: False
+
+# Device
+device: cuda
+autocast_dtype: bf16
+
+# Where to save data for experiment visualizations
+logs_dir: logs

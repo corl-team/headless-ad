@@ -1,0 +1,73 @@
+# Tuned
+# learning_rate: 3.5e-3
+# weight_decay: 0.98
+# dropout: 0.52
+# attention_dropout: 0.6
+# beta1: 0.15
+
+learning_rate: 5e-5
+weight_decay: 0.17
+dropout: 0.14
+attention_dropout: 0.001
+beta1: 0.91
+
+loss_type: mse
+get_action_type: mode
+sim_measure: euclid
+
+# wandb
+project: Headless-AD
+group: bandit_mse_ablation_optimal
+job_type: debug
+name: null
+
+# seeds
+train_seed: 0
+eval_seed: 100
+
+# data settings
+env_name: MultiArmedBanditBernoulli
+num_train_envs: 10_000
+num_env_steps: 300
+train_min_arms: 4
+train_max_arms: 20
+eval_more_arms_list: [10, 20, 25, 30, 40, 50]
+data_generation_algo: thompson
+ucb_alpha: 0.3 # ucb
+learning_histories_path: trajectories
+
+num_eval_envs: 100
+eval_every: 1_000
+log_every: 100
+
+num_train_steps: 200_000
+
+# Model Params
+seq_len: 300
+layer_norm_bias: True
+token_embed_dim: 128
+d_model: 512
+num_layers: 4
+num_heads: 64
+
+# Training params
+batch_size: 32
+warmup_ratio: 0.1
+clip_grad_norm: 5
+use_action_set_prompt: True
+train_on_mixed: True
+rand_select_in_ucb: True
+
+# New
+rotary_percentage: 1.0
+parallel_residual: False
+_norm_class: FusedRMSNorm
+_mlp_class: LLaMAMLP
+shared_attention_norm: False
+
+# Device
+device: cuda
+autocast_dtype: bf16
+
+# Where to save data for experiment visualizations
+logs_dir: logs

@@ -1,0 +1,29 @@
+project: Headless-AD
+program: src/bandit/algorithms/headless_ad.py
+command:
+  - accelerate
+  - launch
+  - --mixed_precision
+  - bf16
+  - -m
+  - src.bandit.algorithms.headless_ad
+  - ${args}
+
+method: random
+
+metric: 
+  name: "times/throughput"
+  goal: maximize
+
+parameters:
+  group:
+    value: 'in-sweep'
+  batch_size:
+    distribution: int_uniform
+    min: 1
+    max: 2560
+  num_train_steps:
+    value: 1000
+  num_train_envs: 
+    value: 10000
+

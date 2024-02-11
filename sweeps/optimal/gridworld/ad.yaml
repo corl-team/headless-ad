@@ -1,0 +1,24 @@
+project: Headless-AD
+program: src/gridworld/algorithms/ad.py
+command:
+  - accelerate
+  - launch
+  - --mixed_precision
+  - bf16
+  - -m
+  - src.gridworld.algorithms.ad
+  - ${args}
+
+method: grid
+
+metric: 
+  name: "final/value"
+  goal: maximize
+
+parameters:
+  train_seed:
+    values: [1, 2, 3, 4, 5]
+  config_path:
+    value: configs/gridworld/ad.yaml
+  action_space_type:
+    values: ['train', 'perm_train', 'test', 'all']

@@ -1,0 +1,49 @@
+project: Headless-AD
+program: src/contextual_bandit/algorithms/ad.py
+command:
+  - accelerate
+  - launch
+  - --mixed_precision
+  - bf16
+  - -m
+  - src.contextual_bandit.algorithms.ad
+  - ${args}
+
+method: bayes
+
+metric: 
+  name: "final/value"
+  goal: minimize
+
+parameters:
+  group:
+    value: 'in-sweep'
+  label_smoothing:
+    distribution: uniform
+    min: 0.0
+    max: 1.0
+  learning_rate:
+    distribution: log_uniform_values
+    min: 1e-5
+    max: 1e-2
+  weight_decay:
+    distribution: log_uniform_values
+    min: 1e-6
+    max: 1.0
+  dropout:
+    distribution: uniform
+    min: 0.0
+    max: 0.55
+  attention_dropout:
+    distribution: uniform
+    min: 0.0
+    max: 0.55
+  beta1:
+    distribution: uniform
+    min: 0.3
+    max: 1.0
+
+
+
+
+  

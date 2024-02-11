@@ -1,0 +1,69 @@
+# Tuned
+attention_dropout: 0.03
+beta1: 0.95
+dropout: 0.01
+label_smoothing: 0.05
+learning_rate: 4e-4
+weight_decay: 8e-6
+
+# wandb
+project: Headless-AD
+group: ad_optimal
+job_type: debug
+name: null
+
+# seeds
+train_seed: 0
+eval_seed: 100
+
+# data settings
+env_name: GridWorld
+num_train_envs: 10_000
+num_in_context_episodes: 1000
+learning_histories_path: trajectories
+
+num_eval_envs: 100
+eval_every: 1000
+log_every: 100
+
+num_train_steps: 100_000
+
+# Model Params
+seq_len: 100
+layer_norm_bias: True
+token_embed_dim: 128
+d_model: 512
+num_layers: 2
+num_heads: 8
+
+# Training params
+batch_size: 64
+warmup_ratio: 0.1
+clip_grad_norm: 5
+get_action_type: mode
+rand_select_in_ucb: True
+
+# New
+rotary_percentage: 1.0  # is default in the llama's configs at the bottom
+parallel_residual: False
+shared_attention_norm: False
+_norm_class: FusedRMSNorm
+_mlp_class: LLaMAMLP
+# intermediate_size: 1024
+
+# Device
+device: cuda
+autocast_dtype: bf16
+
+# Where to save data for experiment visualizations
+logs_dir: logs
+
+# New
+action_seq_len: 3
+train_frac_acts: 0.4
+train_frac_goals: 0.85
+grid_size: 9
+num_episodes: 200
+q_learning_lr: 0.9933
+q_learning_discount: 0.6238
+check_cached: False
